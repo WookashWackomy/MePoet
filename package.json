@@ -1,18 +1,21 @@
 {
-  "name": "MERN-boilerplate",
+  "name": "MePoet",
   "version": "1.0.0",
-  "description": "MERN stack project boilerplate",
-  "author": "Eugene Cheung",
+  "description": "webapp to write poems",
+  "author": "Lukasz Lakomy",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkon/MERN-boilerplate.git"
+    "url": "git+https://github.com/WookashWackomy/mepoet.git"
   },
   "license": "MIT",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack -p --progress --profile --colors && node server",
-    "start:dev": "node server"
+    "start:dev": "node server",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
     "node": ">=6"
@@ -23,15 +26,17 @@
     "@babel/preset-react": "^7.0.0-beta.42",
     "autoprefixer": "^8.2.0",
     "babel-loader": "^8.0.0-beta.2",
+    "concurrently": "^4.1.1",
     "connect-history-api-fallback": "^1.5.0",
     "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
+    "css-loader": "^3.0.0",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.1.0",
     "mongoose": "^5.0.11",
     "node-sass": "^4.7.2",
     "nodemon": "^1.17.2",
+    "path": "^0.12.7",
     "postcss-loader": "^2.1.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
