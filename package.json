@@ -15,7 +15,7 @@
     "start:dev": "node server",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
-    "heroku-postbuild": "webpack -p --progress --profile --colors && node server"
+    "heroku-postbuild": "webpack -p --progress --profile --colors"
   },
   "engines": {
     "node": ">=6"
