@@ -19,7 +19,7 @@ class Login extends Component {
 
   handleResponseFB = data => {
     console.log("logged");
-
+    console.log(data);
     const user = {
       fbID: data.profile.id,
       username: data.profile.name,
