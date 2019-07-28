@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import FacebookProvider from "react-facebook/module/FacebookProvider";
 import LoginButton from "react-facebook/module/LoginButton";
-import axios from 'axios';
+import axios from "axios";
 
 class Login extends Component {
   constructor(props) {
@@ -17,17 +17,17 @@ class Login extends Component {
     };
   }
 
-  handleResponseFB = (data) => {
+  handleResponseFB = data => {
     console.log("logged");
 
     const user = {
       fbID: data.profile.id,
       username: data.profile.name,
-      email: data.profile.email,
-
+      email: data.profile.email
     };
 
-    axios.post(`/api/auth/facebook`, user)
+    axios
+      .post(`/api/auth/facebook`, user)
       .then(res => {
         //setredux state
         this.setState({
@@ -40,13 +40,10 @@ class Login extends Component {
         }
       })
       .catch(err => console.log(err));
-
-
-
   };
 
-  handleErrorFB = (error) => {
-    this.setState({error});
+  handleErrorFB = error => {
+    this.setState({ error });
   };
 
   render() {
@@ -69,9 +66,8 @@ class Login extends Component {
     } else {
       LoginContent = (
         <div>
-
           <h1>Please log in</h1>
-          <FacebookProvider appId="350878788921352">
+          <FacebookProvider appId="421761521759707">
             <LoginButton
               scope="email"
               onCompleted={this.handleResponseFB}
@@ -81,11 +77,10 @@ class Login extends Component {
             </LoginButton>
           </FacebookProvider>
         </div>
-      )
+      );
     }
 
     return <div>{LoginContent}</div>;
-
   }
 }
 

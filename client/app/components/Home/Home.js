@@ -26,7 +26,7 @@ class Home extends Component {
       <div key={poem._id}>
         <h3>{poem.title}</h3>
         <p>{poem.body}</p>
-        <FacebookProvider appId="350878788921352">
+        <FacebookProvider appId="421761521759707">
           <ShareButton href="http://www.facebook.com">Share poem</ShareButton>
         </FacebookProvider>
       </div>
