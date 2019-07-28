@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import 'whatwg-fetch';
+import React, { Component } from "react";
+import { FacebookProvider, ShareButton } from "react-facebook";
 
 class Home extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/poems')
+    fetch("/api/poems")
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -22,10 +22,13 @@ class Home extends Component {
   }
 
   render() {
-    const poemItems = this.state.poems.map(poem =>(
+    const poemItems = this.state.poems.map(poem => (
       <div key={poem._id}>
         <h3>{poem.title}</h3>
         <p>{poem.body}</p>
+        <FacebookProvider appId="350878788921352">
+          <ShareButton href="http://www.facebook.com">Share poem</ShareButton>
+        </FacebookProvider>
       </div>
     ));
     return (
@@ -33,7 +36,7 @@ class Home extends Component {
         <h1>Poems</h1>
         {poemItems}
       </div>
-    )
+    );
   }
 }
 
