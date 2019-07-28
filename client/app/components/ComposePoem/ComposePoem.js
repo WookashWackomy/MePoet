@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {AxiosInstance as axios} from "axios";
-import ResizableTextarea from '../ResizableTextarea/ResizableTextarea';
+import axios from 'axios';
+import CustomInput from '../ResizableTextarea/CustomInput';
 import './ComposePoem.css';
+import Button from '@material-ui/core/Button';
 
 class ComposePoem extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class ComposePoem extends Component {
     this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
 
     this.state = {
-      author: "",
+      author: "xD",
       title: "",
       poemBody: "",
       rows: 5,
@@ -21,7 +22,7 @@ class ComposePoem extends Component {
   }
 
   validateForm() {
-    return this.state.poemBody.length > 0;
+    return this.state.poemBody.length > 0 && this.state.title.length > 0;
   }
 
   handleSubmit(event) {
@@ -35,7 +36,7 @@ class ComposePoem extends Component {
     };
 
 
-    axios.post(url, poem).then(response => {
+    axios.post(`/api/poems`, poem).then(response => {
       if (response.status === 200) {
         this.props.history.push({
           pathname: '/',
@@ -83,13 +84,25 @@ class ComposePoem extends Component {
   render() {
     return (
       <div id="textarea">
-        <textarea
-          rows={this.state.rows}
-          value={this.state.poemBody}
-          placeholder={'Enter your poem here...'}
-          className={'textarea'}
-          onChange={this.handleTextAreaChange}
-        />
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <CustomInput
+            labelText="Title"
+            id="title"
+            value={this.state.title}
+            onChange={this.handleChange}
+          />
+          <textarea
+            rows={this.state.rows}
+            value={this.state.poemBody}
+            placeholder={'Enter your poem here...'}
+            className={'textarea'}
+            onChange={this.handleTextAreaChange}
+          />
+          <div>
+            <button type="submit" disabled={!this.validateForm()}>Submit poem!</button>
+          </div>
+        </form>
+
       </div>
     );
   }

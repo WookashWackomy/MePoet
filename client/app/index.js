@@ -17,6 +17,7 @@ import HelloWorld from './components/HelloWorld/HelloWorld';
 
 import './styles/styles.scss';
 import ComposePoem from "./components/ComposePoem/ComposePoem";
+import Login from "./components/Login/Login";
 //import 'typeface-roboto';
 
 render((
@@ -26,6 +27,7 @@ render((
         <Route exact path="/" component={Home}/>
         <Route path="/helloworld" component={HelloWorld}/>
         <Route path="/composePoem" component={ComposePoem}/>
+        <Route path="/login" component={Login}/>
         <Route component={NotFound}/>
       </Switch>
     </App>
