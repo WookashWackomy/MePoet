@@ -21,9 +21,9 @@ class Login extends Component {
     console.log("logged");
     console.log(data);
     const user = {
-      fbID: data.profile.id,
-      username: data.profile.name,
-      email: data.profile.email
+      fbID: data.id,
+      username: data.name,
+      email: data.email
     };
 
     axios

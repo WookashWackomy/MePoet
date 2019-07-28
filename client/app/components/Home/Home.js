@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FacebookProvider, ShareButton } from "react-facebook";
+import { FacebookShareButton, FacebookIcon } from "react-share";
 
 class Home extends Component {
   constructor(props) {
@@ -26,9 +26,19 @@ class Home extends Component {
       <div key={poem._id}>
         <h3>{poem.title}</h3>
         <p>{poem.body}</p>
-        <FacebookProvider appId="421761521759707">
-          <ShareButton href="http://www.facebook.com">Share poem</ShareButton>
-        </FacebookProvider>
+        <FacebookShareButton
+          url={"https://mepoet.herokuapp.com"}
+          quote={poem.body}
+          className="share-button"
+        >
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+        <FacebookShareCount
+          url={"https://mepoet.herokuapp.com"}
+          className="share-count"
+        >
+          {count => count}
+        </FacebookShareCount>
       </div>
     ));
     return (
