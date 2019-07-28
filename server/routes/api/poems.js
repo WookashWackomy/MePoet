@@ -22,6 +22,23 @@ module.exports = app => {
       .catch(err => next(err));
   });
 
+  app.put("/api/poems/:id", function(req, res, next) {
+    Poem.findById(req.params.id)
+      .exec()
+      .then(poem => {
+        poem.author = req.body.author;
+        poem.title = req.body.title;
+        poem.body = req.body.body;
+        poem.starSum = poem.starSum + req.body.rating;
+        poem.numberOfVotes++;
+        poem
+          .save()
+          .then(() => res.json(poem))
+          .catch(err => next(err));
+      })
+      .catch(err => next(err));
+  });
+
   app.delete("/api/poems/:id", function(req, res, next) {
     Poem.findOneAndDelete({ _id: req.params.id })
       .exec()
