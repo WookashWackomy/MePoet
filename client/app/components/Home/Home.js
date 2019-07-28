@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  FacebookShareCount
+} from "react-share";
 
 class Home extends Component {
   constructor(props) {
