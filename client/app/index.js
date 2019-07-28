@@ -19,7 +19,7 @@ render(
   <Router>
     <App>
       <Switch>
-        <Route exact path="/" component={Home}>
+        <Route path="/" component={Home}>
           <Route path="helloworld" component={HelloWorld} />
           <Route path="composePoem" component={ComposePoem} />
           <Route path="login" component={Login} />
