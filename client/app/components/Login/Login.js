@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import FacebookProvider from "react-facebook/module/FacebookProvider";
-import LoginButton from "react-facebook/module/LoginButton";
+import FacebookLogin from "react-facebook-login";
 import axios from "axios";
 
 class Login extends Component {
@@ -67,15 +67,14 @@ class Login extends Component {
       LoginContent = (
         <div>
           <h1>Please log in</h1>
-          <FacebookProvider appId="421761521759707">
-            <LoginButton
-              scope="email"
-              onCompleted={this.handleResponseFB}
-              onError={this.handleErrorFB}
-            >
-              <span>Login via Facebook</span>
-            </LoginButton>
-          </FacebookProvider>
+          <FacebookLogin
+            appId="421761521759707"
+            autoLoad={true}
+            fields="name,email,picture"
+            callback={this.handleResponseFB}
+            textButton={"Login via Facebook"}
+          />
+          ,
         </div>
       );
     }
