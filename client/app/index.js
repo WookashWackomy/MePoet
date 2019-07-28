@@ -19,12 +19,11 @@ render(
   <Router>
     <App>
       <Switch>
-        <Route path="/" component={Home}>
-          <Route path="helloworld" component={HelloWorld} />
-          <Route path="composePoem" component={ComposePoem} />
-          <Route path="login" component={Login} />
-          <Route component={NotFound} />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route path="/helloworld" component={HelloWorld} />
+        <Route path="/composePoem" component={ComposePoem} />
+        <Route path="/login" component={Login} />
+        <Route component={NotFound} />
       </Switch>
     </App>
   </Router>,
