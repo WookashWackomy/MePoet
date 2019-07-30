@@ -5,7 +5,7 @@ module.exports = app => {
   app.get("/api/poems", (req, res, next) => {
     Poem.find()
       .exec()
-      .then(counter => res.json(counter))
+      .then(poems => res.json(poems))
       .catch(err => next(err));
   });
 
@@ -42,8 +42,21 @@ module.exports = app => {
   app.delete("/api/poems/:id", function(req, res, next) {
     Poem.findOneAndDelete({ _id: req.params.id })
       .exec()
-      .then(counter => res.json())
+      .then(res => res.json())
       .catch(err => next(err));
+  });
+
+  app.get("/api/poems/search", (req, res) => {
+    let search = req.query.q.toLowerCase();
+    const searchRegex = new RegExp(search, "i");
+    Poem.find()
+      .or([
+        { title: searchRegex },
+        { body: searchRegex },
+        { author: searchRegex }
+      ])
+      .limit(10)
+      .then(poems => res.json(poems));
   });
 
   app.get("/api/fetchPoemLine/:phrase", (req, res, next) => {
@@ -52,11 +65,12 @@ module.exports = app => {
     let phrase = req.params.phrase;
     let fetchedPoems = null;
     let url = "http://poetrydb.org/lines/";
-    url = url + phrase;
-
+    url = url + phrase + "/author,lines";
+    console.log(url);
     axios
       .get(url)
       .then(response => {
+        console.log(response.data);
         const fetchedPoems = response.data.slice(
           0,
           response.data.length > 8 ? 8 : response.data.length

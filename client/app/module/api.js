@@ -5,7 +5,7 @@ export function fetchPoems() {
 }
 
 export function searchPoems(action) {
-  return fetch(`/search?q=${action.payload}`)
+  return fetch(`/api/poems/search?q=${action.payload}`)
     .then(response => response.json())
     .then(poems => poems.reverse());
 }

@@ -10,6 +10,7 @@ import ComposePoem from "../ComposePoem/ComposePoem";
 import Login from "../Login/Login";
 import { Provider } from "react-redux";
 import configureStore from "../../store/configureStore";
+import SearchPoems from "../SearchPoems/SearchPoems";
 
 const store = configureStore();
 
@@ -22,6 +23,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/searchpoems/:q" component={SearchPoems} />
               <Route path="/helloworld" component={HelloWorld} />
               <Route path="/composePoem" component={ComposePoem} />
               <Route path="/login" component={Login} />

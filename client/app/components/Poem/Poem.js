@@ -16,7 +16,10 @@ const Poem = props => {
   const { poem } = props;
   const [values, setValues] = useState({
     rating: 0,
-    globalRating: Math.floor(poem.starSum / poem.numberOfVotes)
+    globalRating: Math.floor(poem.starSum / poem.numberOfVotes),
+    globalRatingExact: poem.numberOfVotes
+      ? Math.round((poem.starSum / poem.numberOfVotes) * 100) / 100
+      : 0
   });
 
   const onStarClick = (nextValue, prevValue, name) => {
@@ -53,22 +56,30 @@ const Poem = props => {
           </Col>
         </Row>
         <Row className="justify-content">
-          <FacebookShareButton
-            url={"https://mepoet.herokuapp.com"}
-            quote={poem.body}
-            className="share-button"
-          >
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
-          <p>share count:</p>
-          <FacebookShareCount
-            url={"https://mepoet.herokuapp.com"}
-            className="share-count"
-          >
-            {count => count}
-          </FacebookShareCount>
-          <Col>
+          <Col xl={6} lg={6} md={6} sm={6} xs={6}>
             <Row>
+              share on facebook!
+              <FacebookShareButton
+                url={"https://mepoet.herokuapp.com"}
+                quote={poem.body}
+                className="share-button"
+              >
+                <FacebookIcon size={32} />
+              </FacebookShareButton>
+            </Row>
+            <Row>
+              <p>share count:</p>
+              <FacebookShareCount
+                url={"https://mepoet.herokuapp.com"}
+                className="share-count"
+              >
+                {count => count}
+              </FacebookShareCount>
+            </Row>
+          </Col>
+          <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+            <Row>
+              <p>rating: {values.globalRatingExact}/5</p>
               <StarRatingComponent
                 name={"star-rating-global"}
                 starCount={5}
@@ -77,6 +88,7 @@ const Poem = props => {
               />
             </Row>
             <Row>
+              <p>rate this poem!</p>
               <StarRatingComponent
                 name={"star-rating"}
                 starCount={5}

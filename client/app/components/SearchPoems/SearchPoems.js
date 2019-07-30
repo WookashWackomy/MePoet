@@ -20,7 +20,7 @@ const SearchPoems = props => {
       <Container className="poem-container" fluid>
         <Row className="justify-content-center">
           <Col>
-            <h1>Poems</h1>
+            <h1>Search results</h1>
             <Row>
               <PoemList poems={poems} />
             </Row>
