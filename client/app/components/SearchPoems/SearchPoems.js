@@ -4,16 +4,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PoemList from "../PoemList/PoemList";
 import { connect } from "react-redux";
-import { getPoems } from "../../module/actions";
+import { searchPoems } from "../../module/actions";
 import { Fragment } from "react";
-import "./Home.scss";
 
-const Home = props => {
-  const { getPoems, poems } = props;
+const SearchPoems = props => {
+  const { match, searchPoems, poems } = props;
 
   useEffect(() => {
-    getPoems();
-  }, [getPoems]);
+    const searchQuery = match.params.q;
+    searchPoems(searchQuery);
+  }, [searchPoems]);
 
   return (
     <Fragment>
@@ -35,9 +35,9 @@ const mapStateToProps = state => ({
   poems: state.poems.poems
 });
 
-const mapDispatchToProps = { getPoems: getPoems };
+const mapDispatchToProps = { searchPoems: searchPoems };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(SearchPoems);

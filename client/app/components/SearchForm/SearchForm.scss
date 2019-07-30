@@ -1,0 +1,14 @@
+#search-form {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  #search-form {
+    margin-left: auto;
+  }
+}
+
+.form-control-input {
+  font-style: oblique;
+  margin-right: 0.4rem;
+}

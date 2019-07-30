@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import CustomInput from "../ResizableTextarea/CustomInput";
-import "./ComposePoem.css";
+import "./ComposePoem.scss";
 import Button from "react-bootstrap/Button";
 import PoemWritingHelper from "../PoemWritingHelper/PoemWritingHelper";
 import Row from "react-bootstrap/Row";
@@ -9,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { withRouter } from "react-router-dom";
 import { postPoem } from "../../module/actions";
+
+import { connect } from "react-redux";
 
 class ComposePoem extends Component {
   constructor(props) {

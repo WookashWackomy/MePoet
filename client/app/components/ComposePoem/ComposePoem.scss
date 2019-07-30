@@ -9,6 +9,7 @@
   height: auto;
   padding: 8px;
   box-shadow: 0px 4px 10px -8px black;
+  width: 100%;
 }
 .textarea::-webkit-input-placeholder {
   color: gainsboro;
@@ -27,5 +28,6 @@
 }
 
 #poem-submit-form {
-  max-width: 50%;
+  margin: 20px;
+  width: 80%;
 }

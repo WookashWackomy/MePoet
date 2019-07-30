@@ -2,11 +2,13 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import {
   FacebookShareButton,
   FacebookIcon,
   FacebookShareCount
 } from "react-share";
+import "./Poem.scss";
 
 import StarRatingComponent from "react-star-rating-component";
 
@@ -42,42 +44,49 @@ const Poem = props => {
 
   return (
     <Fragment>
-      <h3>{poem.title}</h3>
-      <p>{poem.body}</p>
-      <Row className="justify-content">
-        <FacebookShareButton
-          url={"https://mepoet.herokuapp.com"}
-          quote={poem.body}
-          className="share-button"
-        >
-          <FacebookIcon size={32} round />
-        </FacebookShareButton>
-        <p>share count:</p>
-        <FacebookShareCount
-          url={"https://mepoet.herokuapp.com"}
-          className="share-count"
-        >
-          {count => count}
-        </FacebookShareCount>
-        <Col>
-          <Row>
-            <StarRatingComponent
-              name={"star-rating-global"}
-              starCount={5}
-              value={values.globalRating}
-              editing={false}
-            />
-          </Row>
-          <Row>
-            <StarRatingComponent
-              name={"star-rating"}
-              starCount={5}
-              value={values.rating}
-              onStarClick={onStarClick}
-            />
-          </Row>
-        </Col>
-      </Row>
+      <Container className="poem">
+        <Row>
+          <Col>
+            <h3>{poem.title}</h3>
+
+            <p>{poem.body}</p>
+          </Col>
+        </Row>
+        <Row className="justify-content">
+          <FacebookShareButton
+            url={"https://mepoet.herokuapp.com"}
+            quote={poem.body}
+            className="share-button"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+          <p>share count:</p>
+          <FacebookShareCount
+            url={"https://mepoet.herokuapp.com"}
+            className="share-count"
+          >
+            {count => count}
+          </FacebookShareCount>
+          <Col>
+            <Row>
+              <StarRatingComponent
+                name={"star-rating-global"}
+                starCount={5}
+                value={values.globalRating}
+                editing={false}
+              />
+            </Row>
+            <Row>
+              <StarRatingComponent
+                name={"star-rating"}
+                starCount={5}
+                value={values.rating}
+                onStarClick={onStarClick}
+              />
+            </Row>
+          </Col>
+        </Row>
+      </Container>
     </Fragment>
   );
 };

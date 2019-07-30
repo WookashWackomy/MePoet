@@ -6,7 +6,9 @@ import {
   NEW_POEM,
   POEM_POSTED,
   DELETE_POEM,
-  POEM_DELETED
+  POEM_DELETED,
+  EDIT_POEM,
+  POEM_EDITED
 } from "./actions.js";
 
 const initialState = {
