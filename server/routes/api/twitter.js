@@ -11,22 +11,27 @@ module.exports = app => {
   app.get("/api/twitter/search", (req, res, next) => {
     let search = req.query.q;
     console.log(search);
-    twitterClient.get("search/tweets", { q: search }, function(
-      error,
-      tweets,
-      response
-    ) {
-      let tweetResponse = [];
-      tweets.statuses.forEach(function(tweet) {
-        tweetResponse.push({
-          id: tweet.id,
-          text: tweet.text,
-          hashtags: tweet.entities.hashtags,
-          user: tweet.user.name,
-          url: tweet.extended_entities.media.url
+    try {
+      twitterClient.get("search/tweets", { q: search }, function(
+        error,
+        tweets,
+        response
+      ) {
+        let tweetsResponse = [];
+        tweets.statuses.forEach(function(tweet) {
+          tweetsResponse.push({
+            id: tweet.id,
+            body: tweet.text,
+            title: "",
+            hashtags: tweet.entities.hashtags,
+            url: tweet.entities.urls.url,
+            author: tweet.user.name
+          });
         });
+        res.json(tweetsResponse);
       });
-      res.json(tweetResponse);
-    });
+    } catch (err) {
+      console.log(err);
+    }
   });
 };

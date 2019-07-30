@@ -13,7 +13,7 @@ import "./Poem.scss";
 import StarRatingComponent from "react-star-rating-component";
 
 const Poem = props => {
-  const { poem } = props;
+  const { poem, showSocialTab } = props;
   const [values, setValues] = useState({
     rating: 0,
     globalRating: Math.floor(poem.starSum / poem.numberOfVotes),
@@ -55,54 +55,62 @@ const Poem = props => {
             <p>{poem.body}</p>
           </Col>
         </Row>
-        <Row className="justify-content">
-          <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-            <Row>
-              share on facebook!
-              <FacebookShareButton
-                url={"https://mepoet.herokuapp.com"}
-                quote={poem.body}
-                className="share-button"
-              >
-                <FacebookIcon size={32} />
-              </FacebookShareButton>
-            </Row>
-            <Row>
-              <p>share count:</p>
-              <FacebookShareCount
-                url={"https://mepoet.herokuapp.com"}
-                className="share-count"
-              >
-                {count => count}
-              </FacebookShareCount>
-            </Row>
-          </Col>
-          <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-            <Row>
-              <p>rating: {values.globalRatingExact}/5</p>
-              <StarRatingComponent
-                name={"star-rating-global"}
-                starCount={5}
-                value={values.globalRating}
-                editing={false}
-              />
-            </Row>
-            <Row>
-              <p>rate this poem!</p>
-              <StarRatingComponent
-                name={"star-rating"}
-                starCount={5}
-                value={values.rating}
-                onStarClick={onStarClick}
-              />
-            </Row>
-          </Col>
-        </Row>
+        {showSocialTab ? (
+          <Row className="justify-content">
+            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+              <Row>
+                share on facebook!
+                <FacebookShareButton
+                  url={"https://mepoet.herokuapp.com"}
+                  quote={poem.body}
+                  className="share-button"
+                >
+                  <FacebookIcon size={32} />
+                </FacebookShareButton>
+              </Row>
+              <Row>
+                <p>share count:</p>
+                <FacebookShareCount
+                  url={"https://mepoet.herokuapp.com"}
+                  className="share-count"
+                >
+                  {count => count}
+                </FacebookShareCount>
+              </Row>
+            </Col>
+            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+              <Row>
+                <p>rating: {values.globalRatingExact}/5</p>
+                <StarRatingComponent
+                  name={"star-rating-global"}
+                  starCount={5}
+                  value={values.globalRating}
+                  editing={false}
+                />
+              </Row>
+              <Row>
+                <p>rate this poem!</p>
+                <StarRatingComponent
+                  name={"star-rating"}
+                  starCount={5}
+                  value={values.rating}
+                  onStarClick={onStarClick}
+                />
+              </Row>
+            </Col>
+          </Row>
+        ) : null}
       </Container>
     </Fragment>
   );
 };
+Poem.defaultProps = {
+  showSocialTab: true
+};
 
-Poem.propTypes = {};
+Poem.propTypes = {
+  poem: PropTypes.object.isRequired,
+  showSocialTab: PropTypes.bool
+};
 
 export default Poem;

@@ -11,7 +11,7 @@ const SearchForm = props => {
 
     if (values.searchQuery !== "") {
       props.history.push(
-        encodeURIComponent("/searchpoems/" + values.searchQuery)
+        "/searchpoems/" + encodeURIComponent(values.searchQuery)
       );
     } else {
       props.history.push("/");

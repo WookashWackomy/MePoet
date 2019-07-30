@@ -9,15 +9,18 @@ import { Fragment } from "react";
 import TwitterPoemList from "../TwitterPoemList/TwitterPoemList";
 
 const SearchPoems = props => {
-  const { match, searchPoems, poems, twitterPoems } = props;
+  const { match, searchPoems, searchPoemsTwitter, poems, twitterPoems } = props;
   useEffect(() => {
-    const searchQuery = match.params.q;
-    const searchQueryTwitter = decodeURIComponent(match.params.q)
+    const searchQuery = decodeURIComponent(match.params.q);
+    console.log(searchQuery);
+    const searchQueryTwitter = searchQuery
       .split(" ")
       .filter(w => (w.charAt(0) === "#" ? true : false));
     searchPoems(searchQuery);
-    searchPoems(searchQuery);
-    searchPoemsTwitter(searchQueryTwitter);
+    if (searchQueryTwitter.length > 0) {
+      searchPoemsTwitter(searchQueryTwitter.join(" "));
+    }
+    console.log(searchQueryTwitter.join(" "));
   }, [searchPoems]);
 
   return (
@@ -47,7 +50,10 @@ const mapStateToProps = state => ({
   twitterPoems: state.twitter.poems
 });
 
-const mapDispatchToProps = { searchPoems: searchPoems };
+const mapDispatchToProps = {
+  searchPoems: searchPoems,
+  searchPoemsTwitter: searchPoemsTwitter
+};
 
 export default connect(
   mapStateToProps,

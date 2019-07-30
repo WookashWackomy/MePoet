@@ -46,6 +46,7 @@ function* watchSearchPoems() {
 }
 /////////////////////////////////////
 function* searchPoemsTwitter(action) {
+  console.log("XD");
   try {
     const poems = yield call(api.searchPoemsTwitter, action);
     yield put({ type: SEARCH_POEMS_TWITTER_SUCCESS, payload: poems });

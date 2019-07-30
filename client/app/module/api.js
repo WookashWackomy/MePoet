@@ -11,7 +11,8 @@ export function searchPoems(action) {
 }
 
 export function searchPoemsTwitter(action) {
-  return fetch(`/api/twitter/search?q=${action.payload}`)
+  console.log(`/api/twitter/search?q=${encodeURIComponent(action.payload)}`);
+  return fetch(`/api/twitter/search?q=${encodeURIComponent(action.payload)}`)
     .then(response => response.json())
     .then(poems => poems.reverse());
 }

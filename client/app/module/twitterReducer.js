@@ -19,6 +19,7 @@ export default function twitterReducer(state = initialState, action) {
         loading: false
       };
     default:
+      console.log(action);
       return state;
   }
 }
