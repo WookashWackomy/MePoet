@@ -7,6 +7,8 @@ import PoemWritingHelper from "../PoemWritingHelper/PoemWritingHelper";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import { withRouter } from "react-router-dom";
+import { postPoem } from "../../module/actions";
 
 class ComposePoem extends Component {
   constructor(props) {
@@ -44,22 +46,8 @@ class ComposePoem extends Component {
       title: this.state.title,
       body: this.state.poemBody
     };
-
-    axios
-      .post(`/api/poems`, poem)
-      .then(response => {
-        if (response.status === 200) {
-          this.props.history.push({
-            pathname: "/",
-            state: { login: this.state.login }
-          });
-        } else {
-          throw new Error(response.status);
-        }
-      })
-      .catch(error => {
-        console.log("error " + error.message);
-      });
+    this.props.postPoem(poem);
+    history.go(-1);
   }
 
   handleChange(event) {
@@ -154,4 +142,11 @@ class ComposePoem extends Component {
   }
 }
 
-export default ComposePoem;
+const mapDispatchToProps = { postPoem: postPoem };
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(ComposePoem)
+);
