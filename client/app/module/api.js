@@ -9,3 +9,33 @@ export function searchPoems(action) {
     .then(response => response.json())
     .then(poems => poems.reverse());
 }
+
+export function postPoem(action) {
+  return fetch("/api/poems", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(action.payload)
+  }).then(response => response.json());
+}
+
+export function deletePoem(action) {
+  return fetch("/api/poems/" + action.payload.id, {
+    method: "DELETE",
+    body: JSON.stringify("")
+  });
+}
+
+export function editPoem(action) {
+  return fetch("/api/poems/" + action.payload.id, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(action.payload)
+  });
+}
