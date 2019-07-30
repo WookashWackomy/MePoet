@@ -15,6 +15,14 @@ export const searchPoems = query => ({
   payload: query
 });
 
+export const SEARCH_POEMS_TWITTER = "SEARCH_POEMS_TWITTER";
+export const SEARCH_POEMS_TWITTER_SUCCESS = "SEARCH_POEMS_TWITTER_SUCCESS";
+
+export const searchPoemsTwitter = query => ({
+  type: SEARCH_POEMS_TWITTER,
+  payload: query
+});
+
 export const NEW_POEM = "NEW_POEM";
 export const POEM_POSTED = "POEM_POSTED";
 

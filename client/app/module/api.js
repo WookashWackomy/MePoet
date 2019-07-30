@@ -10,6 +10,12 @@ export function searchPoems(action) {
     .then(poems => poems.reverse());
 }
 
+export function searchPoemsTwitter(action) {
+  return fetch(`/api/twitter/search?q=${action.payload}`)
+    .then(response => response.json())
+    .then(poems => poems.reverse());
+}
+
 export function postPoem(action) {
   return fetch("/api/poems", {
     method: "POST",

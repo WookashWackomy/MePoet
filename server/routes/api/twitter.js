@@ -19,6 +19,7 @@ module.exports = app => {
       let tweetResponse = [];
       tweets.statuses.forEach(function(tweet) {
         tweetResponse.push({
+          id: tweet.id,
           text: tweet.text,
           hashtags: tweet.entities.hashtags,
           user: tweet.user.name,

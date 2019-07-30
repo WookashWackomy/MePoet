@@ -11,7 +11,9 @@ import {
   DELETE_POEM,
   POEM_DELETED,
   EDIT_POEM,
-  POEM_EDITED
+  POEM_EDITED,
+  SEARCH_POEMS_TWITTER,
+  SEARCH_POEMS_TWITTER_SUCCESS
 } from "./actions";
 import * as api from "./api";
 //////////////////////////
@@ -41,6 +43,19 @@ function* searchPoems(action) {
 
 function* watchSearchPoems() {
   yield takeEvery(SEARCH_POEMS, searchPoems);
+}
+/////////////////////////////////////
+function* searchPoemsTwitter(action) {
+  try {
+    const poems = yield call(api.searchPoemsTwitter, action);
+    yield put({ type: SEARCH_POEMS_TWITTER_SUCCESS, payload: poems });
+  } catch (error) {
+    yield put({ type: SET_ERROR, payload: error });
+  }
+}
+
+function* watchSearchPoemsTwitter() {
+  yield takeEvery(SEARCH_POEMS_TWITTER, searchPoemsTwitter);
 }
 
 /////////////////////////////////////
@@ -91,6 +106,7 @@ export default function* rootSaga() {
     watchSearchPoems(),
     watchPostPoem(),
     watchEditPoem(),
-    watchDeletePoem()
+    watchDeletePoem(),
+    watchSearchPoemsTwitter()
   ]);
 }
