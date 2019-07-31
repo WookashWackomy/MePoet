@@ -14,6 +14,7 @@ export default function userReducer(state = initialState, action) {
       return { ...state, loading: true };
     case LOGIN_FACEBOOK_SUCCESS:
       const data = action.payload;
+      console.log(action.payload);
       return {
         ...state,
         fbID: data.id,
