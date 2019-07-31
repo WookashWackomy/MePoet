@@ -17,8 +17,8 @@ export default function userReducer(state = initialState, action) {
       console.log(action.payload);
       return {
         ...state,
-        fbID: data.id,
-        username: data.name,
+        fbID: data.fbID,
+        username: data.username,
         email: data.email,
         isLoggedIn: true,
         loading: false
