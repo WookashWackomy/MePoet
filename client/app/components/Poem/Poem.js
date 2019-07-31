@@ -58,7 +58,10 @@ const Poem = props => {
                   author : {poem.author !== "" ? poem.author : "anonymous"}{" "}
                 </p>
               </div>
-              <p>{poem.body}</p>
+              <div className="poem-body">
+                <p>poem:</p>
+                <p>{poem.body}</p>
+              </div>
             </Col>
           </Row>
           {showSocialTab ? (
