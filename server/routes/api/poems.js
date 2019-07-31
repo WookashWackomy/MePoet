@@ -4,9 +4,16 @@ const Poem = require("../../models/Poem");
 module.exports = app => {
   app.get("/api/poems", (req, res, next) => {
     console.log(req.query.user);
-    Poem.find({ authorFBID: req.query.user })
-      .then(poems => res.json(poems))
-      .catch(err => next(err));
+    if (req.query.user) {
+      Poem.find({ authorFBID: req.query.user })
+        .then(poems => res.json(poems))
+        .catch(err => next(err));
+    } else {
+      Poem.find()
+        .exec()
+        .then(poems => res.json(poems))
+        .catch(err => next(err));
+    }
   });
 
   app.post("/api/poems", function(req, res, next) {
