@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { loginFacebook } from "../../module/actions";
+import { connect } from "react-redux";
 
 class Login extends Component {
   constructor(props) {
