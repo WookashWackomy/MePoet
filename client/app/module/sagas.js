@@ -121,7 +121,7 @@ function* watchEditPoem() {
 
 function* loginFacebook(action) {
   try {
-    yield call(api.loginFacebok, action);
+    yield call(api.loginFacebook, action);
     yield put({ type: LOGIN_FACEBOOK_SUCCESS, payload: action.payload });
   } catch (error) {
     yield put({ type: SET_ERROR, payload: error });
