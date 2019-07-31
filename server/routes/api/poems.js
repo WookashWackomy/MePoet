@@ -16,10 +16,12 @@ module.exports = app => {
       title: req.body.title,
       body: req.body.body
     });
-
     poem
       .save()
-      .then(() => res.json(poem))
+      .then(() => {
+        console.log("all good");
+        res.json(poem);
+      })
       .catch(err => next(err));
   });
 

@@ -1,7 +1,7 @@
 import { LOGIN_FACEBOOK, LOGIN_FACEBOOK_SUCCESS } from "./actions.js";
 
 const initialState = {
-  fbID: null,
+  fbID: "",
   username: "",
   email: "",
   isLoggedIn: false,

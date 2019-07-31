@@ -27,7 +27,7 @@ class Login extends Component {
       email: data.email
     };
 
-    loginFacebook(userData);
+    this.props.loginFacebook(userData);
   };
 
   handleErrorFB = error => {
