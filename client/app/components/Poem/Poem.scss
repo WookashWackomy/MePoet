@@ -1,7 +1,18 @@
 .poem {
   margin: 0.5rem;
-  border: 8px solid #1c6ea4;
+  padding: 0.5rem;
+  border: 2px solid #1c6ea4;
   border-radius: 29px;
-  min-height: 20rem;
-  min-width: 24rem;
+  min-height: 18rem;
+  min-width: 18em;
+  white-space: pre-wrap;
+}
+
+.poem-header {
+  font-style: oblique;
+  border-bottom: 1px solid #1c6ea4;
+}
+
+.social-footer {
+  border-top: 1px solid #1c6ea4;
 }

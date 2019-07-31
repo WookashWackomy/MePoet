@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import FacebookProvider from "react-facebook/module/FacebookProvider";
 import FacebookLogin from "react-facebook-login";
-import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -59,7 +56,7 @@ class Login extends Component {
               <h1>Please log in</h1>
               <FacebookLogin
                 appId="421761521759707"
-                autoLoad={true}
+                autoLoad={false}
                 fields="name,email,picture"
                 callback={this.handleResponseFB}
                 textButton={"Login via Facebook"}

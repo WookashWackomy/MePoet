@@ -21,7 +21,7 @@ const Header = () => (
           </Link>
           <Link to="/login">
             <Button id="button-menu" variant="dark">
-              Login in with Facebook
+              Login in
             </Button>
           </Link>
 

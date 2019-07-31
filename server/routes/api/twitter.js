@@ -9,10 +9,16 @@ const twitterClient = new Twitter({
 
 module.exports = app => {
   app.get("/api/twitter/search", (req, res, next) => {
-    let search = req.query.q;
-    console.log(search);
+    const search = req.query.q;
+
+    const searchQuery = "#mepoetpoem (".concat(
+      search.replace(" ", " OR "),
+      ")"
+    );
+
+    console.log(searchQuery);
     try {
-      twitterClient.get("search/tweets", { q: search }, function(
+      twitterClient.get("search/tweets", { q: searchQuery }, function(
         error,
         tweets,
         response

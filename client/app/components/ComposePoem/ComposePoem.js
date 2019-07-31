@@ -17,7 +17,6 @@ class ComposePoem extends Component {
 
     this.state = {
       isIdle: false,
-      author: "xD",
       title: "",
       poemBody: "",
       phrase: "",
@@ -43,7 +42,7 @@ class ComposePoem extends Component {
     console.log(this.state.poemBody);
 
     const poem = {
-      author: this.state.author,
+      author: this.props.user.username,
       authorFBID: this.props.user.fbID,
       title: this.state.title,
       body: this.state.poemBody

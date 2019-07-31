@@ -6,7 +6,8 @@ import Container from "react-bootstrap/Container";
 import {
   FacebookShareButton,
   FacebookIcon,
-  FacebookShareCount
+  TwitterShareButton,
+  TwitterIcon
 } from "react-share";
 import "./Poem.scss";
 
@@ -48,37 +49,20 @@ const Poem = props => {
   return (
     <Fragment>
       <Container className="poem">
-        <Row>
-          <Col>
-            <h3>{poem.title}</h3>
-
-            <p>{poem.body}</p>
-          </Col>
-        </Row>
-        {showSocialTab ? (
-          <Row className="justify-content">
-            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-              <Row>
-                share on facebook!
-                <FacebookShareButton
-                  url={"https://mepoet.herokuapp.com"}
-                  quote={poem.body}
-                  className="share-button"
-                >
-                  <FacebookIcon size={32} />
-                </FacebookShareButton>
-              </Row>
-              <Row>
-                <p>share count:</p>
-                <FacebookShareCount
-                  url={"https://mepoet.herokuapp.com"}
-                  className="share-count"
-                >
-                  {count => count}
-                </FacebookShareCount>
-              </Row>
+        <Col>
+          <Row>
+            <Col>
+              <div className="poem-header">
+                <p>title :{poem.title} </p>
+                <p>
+                  author : {poem.author !== "" ? poem.author : "anonymous"}{" "}
+                </p>
+              </div>
+              <p>{poem.body}</p>
             </Col>
-            <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+          </Row>
+          {showSocialTab ? (
+            <Col className="social-footer">
               <Row>
                 <p>rating: {values.globalRatingExact}/5</p>
                 <StarRatingComponent
@@ -97,9 +81,28 @@ const Poem = props => {
                   onStarClick={onStarClick}
                 />
               </Row>
+              <Row>
+                share on facebook!
+                <FacebookShareButton
+                  url={"https://mepoet.herokuapp.com"}
+                  quote={poem.body}
+                  className="share-button"
+                >
+                  <FacebookIcon size={32} />
+                </FacebookShareButton>
+              </Row>
+              <Row>
+                share on twitter!
+                <TwitterShareButton
+                  url={"https://mepoet.herokuapp.com"}
+                  title={poem.body + "\n #mepoet\n"}
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+              </Row>
             </Col>
-          </Row>
-        ) : null}
+          ) : null}
+        </Col>
       </Container>
     </Fragment>
   );
