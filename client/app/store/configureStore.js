@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import poemReducer from "../module/poemReducer";
 import errorReducer from "../module/errorReducer";
 import twitterReducer from "../module/twitterReducer";
+import userReducer from "../module/userReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
