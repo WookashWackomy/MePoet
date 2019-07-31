@@ -11,7 +11,8 @@ export const GET_MY_POEMS = "GET_MY_POEMS";
 export const MY_POEMS_RECEIVED = "MY_POEMS_RECEIVED";
 
 export const getMyPoems = user => ({
-  type: GET_MY_POEMS
+  type: GET_MY_POEMS,
+  payload: user
 });
 
 export const SEARCH_POEMS = "SEARCH_POEMS";
