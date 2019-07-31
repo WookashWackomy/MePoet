@@ -21,12 +21,15 @@ const Header = () => (
           </Link>
           <Link to="/login">
             <Button id="button-menu" variant="dark">
-              login
+              Login in with Facebook
             </Button>
           </Link>
 
           <Link to="/composePoem">
             <Button variant="dark">Compose!</Button>
+          </Link>
+          <Link to="/mypoems">
+            <Button variant="dark">My poems</Button>
           </Link>
           <SearchForm />
         </Nav>

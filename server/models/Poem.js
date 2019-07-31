@@ -4,6 +4,9 @@ const PoemSchema = new mongoose.Schema({
   author: {
     type: String
   },
+  authorFBID: {
+    type: String
+  },
   title: {
     type: String
   },

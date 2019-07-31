@@ -6,43 +6,27 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { loginFacebook } from "../../module/actions";
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      error: "",
-      isLoggedIn: false,
-      userID: "",
-      email: "",
-      name: ""
+      error: ""
     };
   }
 
   handleResponseFB = data => {
     console.log("logged");
     console.log(data);
-    const user = {
+    const userData = {
       fbID: data.id,
       username: data.name,
       email: data.email
     };
 
-    axios
-      .post(`/api/auth/facebook`, user)
-      .then(res => {
-        //setredux state
-        this.setState({
-          isLoggedIn: true,
-          name: data.profile.name,
-          email: data.profile.email
-        });
-        if (res.status === 400) {
-          console.log("already present in the database");
-        }
-      })
-      .catch(err => console.log(err));
+    loginFacebook(userData);
   };
 
   handleErrorFB = error => {
@@ -51,8 +35,8 @@ class Login extends Component {
 
   render() {
     let LoginContent;
-
-    if (this.state.isLoggedIn) {
+    const { user } = this.props;
+    if (user.isLoggedIn) {
       LoginContent = (
         <div
           style={{
@@ -62,8 +46,8 @@ class Login extends Component {
             padding: "20px"
           }}
         >
-          <h2>You have been logged in {this.state.name}</h2>
-          Email: {this.state.email}
+          <h2>You are logged in {user.name}</h2>
+          Email: {user.email}
         </div>
       );
     } else {
@@ -89,4 +73,13 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapDispatchToProps = { loginFacebook: loginFacebook };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

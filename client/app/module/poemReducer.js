@@ -1,6 +1,8 @@
 import {
   GET_POEMS,
   POEMS_RECEIVED,
+  GET_MY_POEMS,
+  MY_POEMS_RECEIVED,
   SEARCH_POEMS,
   SEARCH_POEMS_SUCCESS,
   NEW_POEM,
@@ -21,6 +23,15 @@ export default function poemReducer(state = initialState, action) {
     case GET_POEMS:
       return { ...state, loading: true };
     case POEMS_RECEIVED:
+      console.log(action);
+      return {
+        ...state,
+        poems: action.payload,
+        loading: false
+      };
+    case GET_MY_POEMS:
+      return { ...state, loading: true };
+    case MY_POEMS_RECEIVED:
       console.log(action);
       return {
         ...state,

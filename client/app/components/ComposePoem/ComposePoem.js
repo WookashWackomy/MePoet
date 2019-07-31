@@ -44,6 +44,7 @@ class ComposePoem extends Component {
 
     const poem = {
       author: this.state.author,
+      authorFBID: this.props.user.fbID,
       title: this.state.title,
       body: this.state.poemBody
     };
@@ -142,12 +143,15 @@ class ComposePoem extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  user: state.user
+});
 
 const mapDispatchToProps = { postPoem: postPoem };
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(ComposePoem)
 );

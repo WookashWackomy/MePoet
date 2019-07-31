@@ -3,6 +3,11 @@ export function fetchPoems() {
     .then(res => res.json())
     .then(poems => poems.reverse());
 }
+export function fetchMyPoems(action) {
+  return fetch(`/api/poems?user=${action.payload.fbID}`)
+    .then(res => res.json())
+    .then(poems => poems.reverse());
+}
 
 export function searchPoems(action) {
   return fetch(`/api/poems/search?q=${action.payload}`)
@@ -43,6 +48,17 @@ export function editPoem(action) {
       "Content-Type": "application/json"
     },
 
+    body: JSON.stringify(action.payload)
+  });
+}
+
+export function loginFacebook(action) {
+  return fetch(`/api/auth/facebook`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(action.payload)
   });
 }

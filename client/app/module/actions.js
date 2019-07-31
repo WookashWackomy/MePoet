@@ -7,6 +7,13 @@ export const getPoems = () => ({
   type: GET_POEMS
 });
 
+export const GET_MY_POEMS = "GET_MY_POEMS";
+export const MY_POEMS_RECEIVED = "MY_POEMS_RECEIVED";
+
+export const getMyPoems = user => ({
+  type: GET_MY_POEMS
+});
+
 export const SEARCH_POEMS = "SEARCH_POEMS";
 export const SEARCH_POEMS_SUCCESS = "SEARCH_POEMS_SUCCESS";
 
@@ -45,4 +52,12 @@ export const POEM_EDITED = "POEM_EDITED";
 export const editPoem = poem => ({
   type: EDIT_POEM,
   payload: poem
+});
+
+export const LOGIN_FACEBOOK = "LOGIN_FACEBOOK";
+export const LOGIN_FACEBOOK_SUCCESS = "LOGIN_FACEBOOK_SUCCESS";
+
+export const loginFacebook = data => ({
+  type: LOGIN_FACEBOOK,
+  payload: data
 });

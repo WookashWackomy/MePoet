@@ -3,8 +3,8 @@ const Poem = require("../../models/Poem");
 
 module.exports = app => {
   app.get("/api/poems", (req, res, next) => {
-    Poem.find()
-      .exec()
+    console.log(req.query.user);
+    Poem.find({ authorFBID: req.query.user })
       .then(poems => res.json(poems))
       .catch(err => next(err));
   });
@@ -12,6 +12,7 @@ module.exports = app => {
   app.post("/api/poems", function(req, res, next) {
     const poem = new Poem({
       author: req.body.author,
+      authorFBID: req.body.authorFBID ? req.body.authorFBID : "",
       title: req.body.title,
       body: req.body.body
     });

@@ -14,7 +14,8 @@ export default () => {
     combineReducers({
       poems: poemReducer,
       error: errorReducer,
-      twitter: twitterReducer
+      twitter: twitterReducer,
+      user: userReducer
     }),
     composeEnhancers(applyMiddleware(...middleware))
   );
